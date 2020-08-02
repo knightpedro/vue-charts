@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <LineChart :data="line" :lineStyle="lineStyle" />
     <b-field label="Line width">
       <b-slider size="is-small" rounded :min="1" :max="20" v-model="lineWidth"></b-slider>

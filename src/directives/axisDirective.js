@@ -10,7 +10,14 @@ const axisGenerators = {
 
 export default function (el, binding) {
   const position = binding.arg;
-  const scale = binding.value;
+  const { scale, width, height } = binding.value;
   const axisGenerator = axisGenerators[position];
-  d3.select(el).call(axisGenerator(scale));
+  let translation = '';
+  if (position === AXIS_POSITIONS.bottom) {
+    translation = `translate(0, ${height})`
+  }
+  else if (position === AXIS_POSITIONS.right) {
+    translation = `translate(${width}, 0)`
+  }
+  d3.select(el).call(axisGenerator(scale)).attr('transform', translation)
 }

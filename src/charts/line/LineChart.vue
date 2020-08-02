@@ -4,13 +4,11 @@
       <path :d="line" :style="style" />
       <g
         v-if="options.xAxis"
-        v-axis:[options.xAxis.position]="xScale"
-        :transform="transforms.xAxis"
+        v-axis:[options.xAxis.position]="{scale: xScale, width: chartWidth, height: chartHeight}"
       />
       <g
         v-if="options.yAxis"
-        v-axis:[options.yAxis.position]="yScale"
-        :transform="transforms.yAxis"
+        v-axis:[options.yAxis.position]="{scale: yScale, width: chartWidth, height: chartHeight}"
       />
     </g>
   </svg>
@@ -18,7 +16,6 @@
 
 <script>
   import * as d3 from "d3";
-  import { AXIS_POSITIONS } from "../chartOptions";
   import defaults from "./lineChartDefaults";
   import merge from "lodash/merge";
 
@@ -69,14 +66,6 @@
       transforms() {
         return {
           chartArea: `translate(${this.options.margin.left}, ${this.options.margin.top})`,
-          xAxis:
-            this.options.xAxis.position === AXIS_POSITIONS.bottom
-              ? `translate(0, ${this.chartHeight})`
-              : "",
-          yAxis:
-            this.options.yAxis.position === AXIS_POSITIONS.right
-              ? `translate(${this.chartWidth}, 0)`
-              : "",
         };
       },
       viewBox() {
