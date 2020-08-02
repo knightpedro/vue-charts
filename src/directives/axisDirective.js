@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import { AXIS_POSITIONS } from "../charts/config";
+import { AXIS_POSITIONS } from "../charts/chartOptions";
 
 const axisGenerators = {
   [AXIS_POSITIONS.top]: d3.axisTop,
@@ -8,7 +8,7 @@ const axisGenerators = {
   [AXIS_POSITIONS.right]: d3.axisRight,
 };
 
-export default function(el, binding) {
+export default function (el, binding) {
   const position = binding.arg;
   const scale = binding.value;
   const axisGenerator = axisGenerators[position];
